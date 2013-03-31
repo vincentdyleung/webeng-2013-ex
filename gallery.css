@@ -1,0 +1,41 @@
+li
+{display:inline;}
+
+@media screen and (min-width: 768px) {
+	img.center
+	{  
+		 display: block;  
+		 margin-left: auto;   
+		 margin-right: auto; 
+	}
+}
+
+.photo-group
+{
+	width: 45%;
+	padding: 1em;
+	display: table-cell;
+}
+
+.photo-group h3
+{
+	font-size: 0.8em;
+	margin: 10px 0px;
+}
+
+#img-list
+{
+	padding: 0;
+}
+
+#img-list li
+{
+	display: table-cell;
+	padding: 0.5em;
+}
+
+.news
+{
+	border-bottom-style: solid;
+	border-bottom-color: #000000;
+}
