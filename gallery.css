@@ -39,3 +39,15 @@ li
 	border-bottom-style: solid;
 	border-bottom-color: #000000;
 }
+
+#slide-control
+{
+	background-color: grey;
+	min-width: 60px;
+}
+
+#slide-control .ui-icon
+{
+	display: inline-block;
+	margin: -0.1em;
+}
