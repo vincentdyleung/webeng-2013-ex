@@ -28,20 +28,16 @@ li
 	padding: 0;
 }
 
-#img-list img
-{
-	opacity: 0.1;
-}
-
-#img-list .selected-img
-{
-	opacity: 1;
-}
-
 #img-list li
 {
 	display: table-cell;
 	padding: 0.5em;
+	opacity:0.4;
+}
+
+#img-list li.active
+{
+	opacity:1;
 }
 
 .news
