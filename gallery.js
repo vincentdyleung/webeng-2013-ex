@@ -3,10 +3,13 @@ function swapImages(){
 	var $next = ($('#img-list li.active').next().length > 0) ? $('#img-list li.active').next() : $('#img-list li:first');
 	$active.removeClass('active');
 	$next.addClass('active');
+	var largeImgSrc = $next.children("img").attr("src").replace("-", "").replace(".jpg", "").concat("-large.jpg");
+	$("#center-img").attr("src", largeImgSrc);
 }
 
 
 $(document).ready(function() {
+	var slideShowInterval = 2000;
 	$("#forward-button").click(function() {
 		var currImg = $(".selected-img");
 		$(".selected-img").parent().next().find("img").addClass("selected-img");
@@ -18,7 +21,7 @@ $(document).ready(function() {
 		
 	$("#play-pause-button").click(function() {
 		if ($(this).hasClass("ui-icon-play")) {
-			intervalID = setInterval("swapImages()", 100);
+			intervalID = setInterval("swapImages()", slideShowInterval);
 			$(this).removeClass("ui-icon-play");
 			$(this).addClass("ui-icon-pause");
 		} else if ($(this).hasClass("ui-icon-pause")) {
@@ -36,5 +39,5 @@ $(document).ready(function() {
 		$(".center").attr("src",$newCenter);			
 	});
 	
-	intervalID = setInterval('swapImages()', 100);
+	intervalID = setInterval('swapImages()', slideShowInterval);
 });
