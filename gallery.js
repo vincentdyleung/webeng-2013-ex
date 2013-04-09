@@ -3,8 +3,7 @@ function swapImages(){
 	var $next = ($('#img-list li.active').next().length > 0) ? $('#img-list li.active').next() : $('#img-list li:first');
 	$active.removeClass('active');
 	$next.addClass('active');
-	}		
-			
+}
 
 
 $(document).ready(function() {
@@ -15,8 +14,20 @@ $(document).ready(function() {
 	});
 	
 	//1.automatic slideshow
-	setInterval('swapImages()', 2000);
+	var intervalID;
 		
+	$("#play-pause-button").click(function() {
+		if ($(this).hasClass("ui-icon-play")) {
+			intervalID = setInterval("swapImages()", 100);
+			$(this).removeClass("ui-icon-play");
+			$(this).addClass("ui-icon-pause");
+		} else if ($(this).hasClass("ui-icon-pause")) {
+			clearInterval(intervalID);
+			$(this).addClass("ui-icon-play");
+			$(this).removeClass("ui-icon-pause");
+		}
+	});
+	
 	//2.thumbmail
 	$(".photo-group img").click(function(){
 		var $newCenter = $(this).attr("src");
@@ -24,4 +35,6 @@ $(document).ready(function() {
 		$newCenter = $newCenter.concat("-large.jpg")
 		$(".center").attr("src",$newCenter);			
 	});
+	
+	intervalID = setInterval('swapImages()', 100);
 });
