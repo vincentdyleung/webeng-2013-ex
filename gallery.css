@@ -49,12 +49,14 @@ li
 
 #slide-control
 {
+	float: right;
 	background-color: grey;
 	min-width: 60px;
 }
 
 #slide-control .ui-icon
 {
+	float: right;
 	display: inline-block;
 	margin: -0.1em;
 	cursor: pointer;
