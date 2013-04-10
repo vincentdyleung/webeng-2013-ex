@@ -73,4 +73,28 @@ $(document).ready(function() {
 	});
 	
 	intervalID = setInterval('autoSlideShow()', slideShowInterval);
+        
+        //multitouch
+        $.touch.triggerMouseEvents = true;			
+
+        $(imgArea).touchable({
+		touchDown: function(e, touchHistory) {
+		},
+		touchMove: function(e, touchHistory) {
+		},
+		touchUp: function(e, touchHistory) {
+		var th = touchHistory.stop({
+		type : 'touchDown'
+		});
+		if (th.match({ deltaX: '<-100' })) {
+                    $("#back-button").click();    
+		} else if (th.match({ deltaX: '>100' })) {				
+                    $("#forward-button").click();
+		}
+
+		$.touch.history.empty(); // clear touch history
+	}
+  });
+
+
 });
