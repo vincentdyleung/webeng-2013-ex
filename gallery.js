@@ -73,4 +73,40 @@ $(document).ready(function() {
 	});
 	
 	intervalID = setInterval('autoSlideShow()', slideShowInterval);
+        
+        //multitouch
+	$.touch.triggerMouseEvents = true;			
+
+	$(imgArea).touchable({
+		touchDown: function(e, touchHistory) {
+		},
+		touchMove: function(e, touchHistory) {
+		},
+		touchUp: function(e, touchHistory) {
+			var th = touchHistory.stop({
+				type : 'touchDown'
+			});
+			console.log(th.size());
+			th = th.filter({
+				type: 'touchmove'
+			});
+			console.log(th.size());
+			if (th.match({ deltaX: '<-50' })) {
+				clearInterval(intervalID);
+				prevImage($("#img-list li.active"));
+				if (autoPlay){
+					intervalID = setInterval("autoSlideShow()", slideShowInterval);
+				}    
+			} else if (th.match({ deltaX: '>50' })) {				
+				clearInterval(intervalID);
+				nextImage($("#img-list li.active"));
+				if (autoPlay){
+					intervalID = setInterval("autoSlideShow()", slideShowInterval);
+				}
+			}
+				$.touch.history.empty(); // clear touch history
+		}
+	});
+
+
 });
