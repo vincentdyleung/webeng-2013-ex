@@ -8,6 +8,11 @@
 		<link rel="stylesheet" href="jquery-ui-1.10.2.custom.css" type="text/css" charset="utf-8"/>
 		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 		<script src="jquery-ui-1.10.2.custom.js" type="text/javascript"></script>
+                
+                <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+		<script src="js/jquery.multitouch.js"></script>                                           
+                
 	</head>
 	<body>
 		<div id="container">
@@ -46,7 +51,7 @@
 							<h3>ETH Zentrum</h3>
 							<div>
 								<a href="#"><img src="images/eth-1.jpg"></a>
-								<a href="#"><img src="images/eth-2.jpg",></a>
+								<a href="#"><img src="images/eth-2.jpg"></a>
 							</div>
 							<div>							
 								<a href="#"><img src="images/eth-3.jpg"></a>
@@ -121,5 +126,69 @@
 				</div>
 			</div>
 		</div>
+            
+                    <script>
+			$.touch.triggerMouseEvents = true;
+
+			$.touch.ready(function() {
+				// hide all screens but home screen when application has started
+				$('.screen').not('#home').hide();
+			});
+
+/*			$.touch.orientationChanged(function() {
+				screenWidth = $(window).width();
+				screenHeight = $(window).height();
+
+				// prepare screen images
+				$('.screen img').each(function() {
+					// TODO you could also load a different set of images here, e.g. for landscape mode
+
+					// adapt screen images to full width
+					$(this).width(screenWidth);
+				});
+
+				// scroll to the top of the screen
+				setTimeout(scrollTo, 0, 0, 1);
+			});
+**/
+
+			$(header).touchable({
+				gesture: function(e, touchHistory) {
+					var touches = $(this).touches();
+					if (touches.length > 1) {
+						// first filter the touch history down to the appropriate events
+						var th = touchHistory.stop({
+							type: ['touchdown', 'touchup']
+						}).filter({
+							type: 'touchmove',
+							time: '1..100'
+						});
+						// then try to match it
+						if (th.match([{ touch: touches[0], deltaY: '<-100'}, { touch: touches[1], deltaY: '<-100'}])) {
+//							message('two swipe up');
+							window.location.href="index.html"; 
+						}
+					} else {
+						// first filter the touch history down to the appropriate events
+						var th = touchHistory.stop({
+							type: ['touchdown', 'touchup']
+						}).filter({
+							touch: touchHistory.get(0).touch,
+							type: 'touchmove',
+							time: '1..100'
+						});
+						// then try to match it
+						if (th.match({ deltaX: '<-100' })) {
+                                                        window.location.href="article.html"; 
+    
+						} else if (th.match({ deltaX: '>100' })) {				
+                                                        window.location.href="index.html"; 
+						}
+					}
+				}
+			});
+		</script>
+                
 	</body>
+        
 </html>
