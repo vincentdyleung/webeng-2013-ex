@@ -1,7 +1,7 @@
 #conflict
 CACHE MANIFEST
 /common.css
-/index.css
+/index.css #conflict
 /images/eth-1.jpg
 /images/eth-2.jpg
 /images/eth-3.jpg
